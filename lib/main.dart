@@ -37,15 +37,25 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
 
   // initialize user with list of Videos
-  // Video(id: id, title: title of the video, url: link to youtube Video, connectedVideos: videoIDs that are related to the video)
-  final userInfo = User(videos: [
-    Video(id: 1, type: "Animal", title: "Að hægt er að bæta við vörum eftir að pöntun hefur verið lögð inn? ", url : "https://www.youtube.com/watch?v=ymJ0xJeVYJY&list=PLRQGRBgN_EnpkF2ABYHF5zGI7EBA0EgSs&index=2", connectedVideos: ["Cute","Documentary"]),
-    Video(id: 2, type: "Cute", title: "Að hægt er að bætta við ákveðna vörulið eftir að pöntun hefur verið lögð inn? ", url : "https://www.youtube.com/watch?v=4GQXoNvRL8w&list=PLRQGRBgN_EnpkF2ABYHF5zGI7EBA0EgSs&index=3&t=312s", connectedVideos: ["Documentary","Animal"]),
-    Video(id: 3, type: "Documentary", title: "Að hægt er að skrifa sérstök skilaboð til bílstjóra eftir að pöntun hefur verið lögð inn? ", url : "https://www.youtube.com/watch?v=PMWZuLSVkWY&list=PLRQGRBgN_EnpkF2ABYHF5zGI7EBA0EgSs&index=4", connectedVideos: ["Cute","Animal"]),
-    Video(id: 4, type: "Product", title: "Að hægt er að sjá allar allar uppáhalds vörurnar þínar á sérstökum staða frá forsíðu? ", url : "https://www.youtube.com/watch?v=Hwf77PzWDgI&list=PLRQGRBgN_EnpkF2ABYHF5zGI7EBA0EgSs&index=5", connectedVideos: ["Share","Discover"]),
-    Video(id: 5, type: "Share", title: "Að hægt er að deila körfu með fjölskyldunni og vinna saman í því að velja vörur í körfu? ", url : "https://www.youtube.com/watch?v=ik0AXnmxZog&list=PLRQGRBgN_EnpkF2ABYHF5zGI7EBA0EgSs&index=6", connectedVideos: ["Product","Discover"]),
-    Video(id: 6, type: "Discover", title: "Að hægt er að skoða gómsætar uppskrift og bæta við öllum vörum í körfu? ", url : "https://www.youtube.com/watch?v=lOxC0nYNUMs&list=PLRQGRBgN_EnpkF2ABYHF5zGI7EBA0EgSs&index=7", connectedVideos: ["Share","Product"]),
-  ]);
+  // Video(id: id, title: title of the video, url: link to youtube Video, connectedVideos: Names of Types that are related to the video)
+  final userInfo = User(
+    id: 1,
+    videos: [
+      Video(id: 1, type: "Animal", title: "Að hægt er að bæta við vörum eftir að pöntun hefur verið lögð inn? ", url : "https://www.youtube.com/watch?v=ymJ0xJeVYJY&list=PLRQGRBgN_EnpkF2ABYHF5zGI7EBA0EgSs&index=2", connectedVideos: ["Cute","Documentary"]),
+      Video(id: 2, type: "Cute", title: "Að hægt er að bætta við ákveðna vörulið eftir að pöntun hefur verið lögð inn? ", url : "https://www.youtube.com/watch?v=4GQXoNvRL8w&list=PLRQGRBgN_EnpkF2ABYHF5zGI7EBA0EgSs&index=3&t=312s", connectedVideos: ["Documentary","Animal"]),
+      Video(id: 3, type: "Documentary", title: "Að hægt er að skrifa sérstök skilaboð til bílstjóra eftir að pöntun hefur verið lögð inn? ", url : "https://www.youtube.com/watch?v=PMWZuLSVkWY&list=PLRQGRBgN_EnpkF2ABYHF5zGI7EBA0EgSs&index=4", connectedVideos: ["Cute","Animal"]),
+
+      Video(id: 4, type: "Podcast", title: "Að hægt er að sjá allar allar uppáhalds vörurnar þínar á sérstökum staða frá forsíðu? ", url : "https://www.youtube.com/watch?v=ZzMwDSh6HM0", connectedVideos: ["Audio","Show"]),
+      Video(id: 5, type: "Audio", title: "Að hægt er að deila körfu með fjölskyldunni og vinna saman í því að velja vörur í körfu? ", url : "https://www.youtube.com/watch?v=9rYXr8v3P9Y", connectedVideos: ["Podcast","Show"]),
+      Video(id: 6, type: "Show", title: "Að hægt er að sjá hvaða vörum við mælum með að vanti í körfuna þína í körfu skjá? ", url : "https://www.youtube.com/watch?v=4axEMjPda8Q", connectedVideos: ["Audio","Podcast"]),
+
+      Video(id: 8, type: "Number", title: "Að hægt er að sjá allar kvittanir í dagatali á profile skjá? ", url : "https://www.youtube.com/watch?v=n8COZPpQWgQ", connectedVideos: ["Learning"]),
+      Video(id: 9, type: "Learning", title: "Að hægt er að sjá stöðu pöntunar eftir að hún hefur verið lögð inn úr valmynd af forsíðu, nákvæmari áætlun á komu til þín meðal annars ? ", url : "https://www.youtube.com/watch?v=rSoYRFYT3fA", connectedVideos: ["Number"]),
+
+      Video(id: 10, type: "Computer", title: "Að hægt er að sjá vörur sem við mælum með ef þú kaupir ákveðna væri í vöruspjaldi vöru? ", url : "https://www.youtube.com/watch?v=vYLcQAyDkUQ", connectedVideos: ["Tech"]),
+      Video(id: 11, type: "Tech", title: "Að hægt er að hafna útskiptum að ákveðnum vörum með því að draga þær til vinstri í körfunni, við munum síðan að þú viljir ekki skipta út þessari værum og pössum okkur að merka það næst þegar þú setur hana í körfu ? ", url : "https://www.youtube.com/watch?v=2jrpDICci-k", connectedVideos: ["Computer"]),
+    ],
+  );
 
   String page = "recommend"; // index of page
 
