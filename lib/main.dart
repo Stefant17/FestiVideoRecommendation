@@ -1,16 +1,22 @@
 import 'package:festi_flutter/user_Info/videos.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:festi_flutter/user_Info/user.dart';
 import 'package:festi_flutter/widget/recommend_widget.dart';
 import 'package:festi_flutter/widget/video_lists.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:festi_flutter/dataBaseFunctions/retrieving_file.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Firebase.initializeApp();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  //initialize firebase Storeage
+  final Storage storage = Storage();
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +25,31 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Recommendation Assignment'),
+      home: FutureBuilder(
+        future: storage.listFiles(),
+        builder: (context, AsyncSnapshot<ListResult> snapshot) {
+          if(snapshot.hasError){
+            print("something went wrong");
+            return Text("wrong");
+          }else if(snapshot.hasData){
+            return Container(
+              child: ListView.builder(
+                  itemCount: snapshot.data!.items.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    print("got data");
+                    return Text(snapshot.data!.items[index].name);
+                  }
+            ));
+            //return MyHomePage(title: 'Recommendation Assignment');
+          }else{
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
+      )
     );
   }
-  
 }
 
 class MyHomePage extends StatefulWidget {

@@ -21,6 +21,9 @@ class VideoListWidget extends StatefulWidget{
 }
 
 class _VideoListWidget extends State<VideoListWidget> {
+
+  bool isVisible = false;
+
   @override
   Widget build(BuildContext context) => SingleChildScrollView(
     child: Container(
@@ -37,7 +40,8 @@ class _VideoListWidget extends State<VideoListWidget> {
         // Callback used for when an item in the list is expanded. input: index of item, whether or not it's expanded
         expansionCallback: (int index, bool isExpanded){
           setState(() {
-            widget.user.videos[index].isExpanded = !isExpanded;    // set Video variable "isExpanded" to either true or false depending on whether or not it is expanded
+            widget.user.videos[index].isExpanded = !isExpanded;   // set Video variable "isExpanded" to either true or false depending on whether or not it is expanded
+            isVisible = !isVisible;
           });
         },
 
@@ -57,7 +61,7 @@ class _VideoListWidget extends State<VideoListWidget> {
             // SizeBox of the Video, show's everything that will be seen if the list is expanded
             body: SizedBox(
               height: 250,
-              child: VideoPlayerWidget(vid : item, user: widget.user,)
+              child: isVisible? VideoPlayerWidget(vid : item, user: widget.user,) : Text("no"),
             ),
 
             isExpanded: item.isExpanded
@@ -67,4 +71,16 @@ class _VideoListWidget extends State<VideoListWidget> {
     );
   }
 }
+
+class ListItem{
+  Video video;
+  bool isVisible;
+  bool isExpanded;
+  ListItem({
+    required this.video,
+    required this.isVisible,
+    required this.isExpanded,
+  });
+}
+
 
